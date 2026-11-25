@@ -1,6 +1,6 @@
 # Stack Bar Forever
 
-Add spell stacks to the 12 slots of Action Bar 1 in World of Warcraft: Forever. Each stack uses the slot's existing keybinds and keeps its own place in the sequence.
+Add spell stacks to any enabled action bar in World of Warcraft: Forever. Each stack uses the slot's existing keybinds and keeps its own place in the sequence.
 
 ## Install
 
@@ -11,19 +11,19 @@ Add spell stacks to the 12 slots of Action Bar 1 in World of Warcraft: Forever. 
 ## Use
 
 1. Type `/stackbar` out of combat and open your spellbook.
-2. Find the column for the Action Bar 1 key you want to extend. For example, if `Q` already casts Overpower, drop Mortal Strike into the lowest extra slot in the `Q` column.
+2. Pick an enabled action bar in the editor, then find the column for the slot you want to extend. If `Q` already casts Overpower, drop Mortal Strike into the lowest extra slot in the `Q` column.
 3. Click **Done**. The first tap of `Q` tries Overpower, the second tries Mortal Strike, and the sequence repeats.
 
 The gold key label marks the original action as next. A gold line marks an extra spell as next. Each tap advances the stack, even if the cast fails. A stack can hold up to four extra spells.
 
-Reopen `/stackbar` to move the overlay by its header, replace an extra spell by dropping another onto it, or remove an extra with a right-click. Removing the last extra gives the key back to the original bar. Use `/stackbar off` to pause all stacks and `/stackbar on` to resume.
+The extra icons line up with their existing slots. You can replace an extra spell by dropping another onto it in the editor, or remove one with a right-click. Removing the last extra gives the key back to the original bar. Use `/stackbar off` to pause all stacks and `/stackbar on` to resume.
 
-Stacks are saved per character and follow their Action Bar 1 slots when you rebind a key. Each populated slot uses a temporary override. On upgrade from 0.1, earlier stacks carry over by slot position. A first spell that matches the existing bar action is represented by that action.
+Stacks are saved per character and follow their slots when you rebind a key. Disabling a bar pauses its stacks and preserves their spells. Earlier stacks carry over to Action Bar 1. On upgrades from 0.1, a first spell that matches the existing bar action is represented by that action.
 
 ## Development and releases
 
 The addon targets Forever 1.60.1 (interface `16001`). The repository root is the addon folder. It uses Lua and a TOC file with no external dependencies.
 
-Before releasing, test in-game with Blizzard's bar and EllesmereUI. Check that a fresh install preserves the normal bindings, then interleave two stacks in combat using custom keys. Rebind one slot, remove its last extra, and confirm the slot goes back to normal. Live client testing is pending.
+The editor supports Blizzard's eight action bars and checks for EllesmereUI's additional bars 9 and 10. Before releasing, test both layouts in-game. Interleave two stacks on different bars, then disable one bar and confirm its keys return to normal. Live client testing is pending.
 
-Set the version in `StackBarForever.toc`, commit it, and push a matching tag such as `v0.2.0`. GitHub Actions packages the install ZIP and attaches it to a draft release. Review the draft after testing.
+Set the version in `StackBarForever.toc`, commit it, and push a matching tag such as `v0.3.0`. GitHub Actions packages the install ZIP and attaches it to a draft release. Review the draft after testing.
