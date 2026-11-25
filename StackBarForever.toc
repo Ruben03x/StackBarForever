@@ -1,0 +1,7 @@
+## Interface: 16001
+## Title: Stack Bar Forever
+## Notes: Add independent spell sequences to the existing Action Bar 1 in WoW Forever.
+## Version: 0.2.0
+## SavedVariablesPerCharacter: StackBarForeverDB
+
+StackBarForever.lua
