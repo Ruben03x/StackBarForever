@@ -1,24 +1,29 @@
 # Stack Bar Forever
 
-An extension to Action Bar 1 in World of Warcraft: Forever 1.60.1. You can add up to four extra spells to any of its 12 slots.
+Add spell stacks to the 12 slots of Action Bar 1 in World of Warcraft: Forever. Each stack uses the slot's existing keybinds and keeps its own place in the sequence.
 
 ## Install
 
-1. Extract the `StackBarForever` folder into the Forever client's `Interface/AddOns` folder. Overwrite the addon files if you're updating. The resulting path should be `Interface/AddOns/StackBarForever/StackBarForever.toc`.
-2. Enable **Stack Bar Forever** on the AddOns screen. Restart the game if you installed it while the game was running.
+1. Download the install ZIP from [Releases](https://github.com/Ruben03x/StackBarForever/releases) when one is available. For a development install, clone this repository into a folder named `StackBarForever`.
+2. Place that folder inside `World of Warcraft/_forever_/Interface/AddOns`. The client should see `Interface/AddOns/StackBarForever/StackBarForever.toc`.
+3. Enable **Stack Bar Forever** on the AddOns screen. Restart WoW if it was open when you installed the addon. When updating, overwrite the addon files in the same folder to keep using your saved stacks.
 
-## Try two stacks
+## Use
 
 1. Type `/stackbar` out of combat and open your spellbook.
-2. If Overpower is already in Action Bar 1's `Q` slot, drop Mortal Strike into the lowest extra slot in the `Q` column. Drop another spell above a different slot and click **Done**.
-3. Tap `Q` twice. The first tap attempts the existing action, Overpower, and the next tap attempts Mortal Strike. Each stack remembers its own place.
+2. Find the column for the Action Bar 1 key you want to extend. For example, if `Q` already casts Overpower, drop Mortal Strike into the lowest extra slot in the `Q` column.
+3. Click **Done**. The first tap of `Q` tries Overpower, the second tries Mortal Strike, and the sequence repeats.
 
-Each tap advances from the existing action through the added spells, bottom to top, even when a cast fails. The gold key label marks the existing action as next. A gold line marks an extra spell as next. Stack positions and spells are saved per character.
+The gold key label marks the original action as next. A gold line marks an extra spell as next. Each tap advances the stack, even if the cast fails. A stack can hold up to four extra spells.
 
-Reopen `/stackbar` to move the bar by its header, replace a spell by dropping another onto it, or remove a spell by right-clicking its slot. Slots above a removed spell slide down.
+Reopen `/stackbar` to move the overlay by its header, replace an extra spell by dropping another onto it, or remove an extra with a right-click. Removing the last extra gives the key back to the original bar. Use `/stackbar off` to pause all stacks and `/stackbar on` to resume.
 
-## Keybinds
+Stacks are saved per character and follow their Action Bar 1 slots when you rebind a key. Each populated slot uses a temporary override. On upgrade from 0.1, earlier stacks carry over by slot position. A first spell that matches the existing bar action is represented by that action.
 
-Stacks inherit the slot's existing keybinds, including custom keys and modifiers. A slot's sequence stays with that slot when you change the key. Empty stacks leave their slots alone. Your saved keybinds, actions and layout stay as they are. Remove the last extra spell from a column to return that slot to normal, or use `/stackbar off` to pause every stack and `/stackbar on` to resume. Drag the overlay by its header to line it up above your existing action bar.
+## Development and releases
 
-When upgrading from 0.1, existing sequences follow their original numbered slot positions. Added spells are kept, and a first spell that matches the existing bar action is represented by that action.
+The addon targets Forever 1.60.1 (interface `16001`). The repository root is the addon folder. It uses Lua and a TOC file with no external dependencies.
+
+Before releasing, test in-game with Blizzard's bar and EllesmereUI. Check that a fresh install preserves the normal bindings, then interleave two stacks in combat using custom keys. Rebind one slot, remove its last extra, and confirm the slot goes back to normal. Live client testing is pending.
+
+Set the version in `StackBarForever.toc`, commit it, and push a matching tag such as `v0.2.0`. GitHub Actions packages the install ZIP and attaches it to a draft release. Review the draft after testing.
